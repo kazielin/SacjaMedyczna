@@ -1,0 +1,66 @@
+﻿@page
+@model SacjaMedyczna.Pages.Stacja.TestingModel
+
+@if(Model.DaneOs.Count()==0)
+{
+    <p>No data to display</p>
+}
+<div class="container row p-0 m-0">
+    <div class="col-10">
+        <h2>Dodaj osobę</h2>
+    </div>
+    <div class="col-2">
+        <a asp-page="Dodaj" class="btn btn-info form-control">Dodaj</a>
+    </div>
+</div>
+<form method="post">
+    <table class="table border">
+        <tr class="table-secondary">
+            <th>
+                <label asp-for="DaneOs.FirstOrDefault().ID"></label>
+            </th>
+            <th>
+                <label asp-for="DaneOs.FirstOrDefault().Imie"></label>
+            </th>
+            <th>
+                <label asp-for="DaneOs.FirstOrDefault().Nazwisko"></label>
+            </th>
+            <th>
+                <label asp-for="DaneOs.FirstOrDefault().Pesel"></label>
+            </th>
+            <th>
+                <label asp-for="DaneOs.FirstOrDefault().NumerDowodu"></label>
+            </th>
+            <th>
+                <label asp-for="DaneOs.FirstOrDefault().DataUrodzenia"></label>
+            </th>
+            <th>
+                <label asp-for="DaneOs.FirstOrDefault().NumerTelefonu"></label>
+            </th>
+            <th>
+                <label asp-for="DaneOs.FirstOrDefault().Name"></label>
+            </th>
+
+        </tr>
+        @foreach (var item in Model.DaneOs)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => item.ID)</td>
+                <td>@Html.DisplayFor(m => item.Imie)</td>
+                <td>@Html.DisplayFor(m => item.Nazwisko)</td>
+                <td>@Html.DisplayFor(m => item.Pesel)</td>
+                <td>@Html.DisplayFor(m => item.NumerDowodu)</td>
+                <td>@Html.DisplayFor(m => item.DataUrodzenia)</td>
+                <td>@Html.DisplayFor(m => item.NumerTelefonu)</td>
+                <td>@Html.DisplayFor(m => item.Name)</td>
+                <td>
+                    <button asp-page-handler="Delete" asp-route-id="@item.ID" onclick=" return confirm('Czy na pewno chcesz usunąć?')" class="btn btn-danger btn-sm">Usuń</button>
+                    <a asp-page="Edit" asp-route-id="@item.ID" class="btn btn-success btn-sm text-white">Edytuj</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</form>
+
+
